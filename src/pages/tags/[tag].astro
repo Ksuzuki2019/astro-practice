@@ -1,0 +1,41 @@
+---
+export async function getStaticPaths() {
+    const modules = import.meta.glob('../blog/*.md', { eager: true });
+    const allPosts = Object.values(modules) as any[];
+
+    const uniqueTags = [
+        ...new Set(
+            allPosts
+                .map((post) => post.frontmatter.tags)
+                .flat()
+        )
+    ];
+
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post) =>
+            post.frontmatter.tags.includes(tag)
+        );
+
+        return {
+            params: { tag },
+            props: { posts: filteredPosts },
+        };
+    });
+}
+
+const { tag } = Astro.params;
+const filteredPosts = Astro.props.posts;
+---
+
+<html lang="en">
+    <meta charset="UTF-8">
+    <h1>タグ:{tag} のブログ一覧</h1>
+    <ul>
+        {filteredPosts.map((post: any) =>
+            <li>
+                <a href={post.url}>{post.frontmatter.title}</a>
+            </li>
+        )}
+    </ul>
+
+</html>

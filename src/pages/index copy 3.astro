@@ -1,0 +1,15 @@
+---
+const color = 'red';
+---
+
+<html>
+	<meta charset="UTF-8">
+	<p>CSSに変数を使います</p>
+</html>
+
+<style define:vars={{ color }}>
+	body {
+		background-color: #ccc;
+		color: var(--color);
+	}
+</style>

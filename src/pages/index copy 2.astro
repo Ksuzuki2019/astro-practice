@@ -1,0 +1,28 @@
+---
+const nav = [
+	{
+		href: 'about',
+		label: '会社情報'
+	},
+	{
+		href: 'contact',
+		label: 'お問い合わせ'
+	}
+]
+---
+
+<html lang="jp">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Document</title>
+	</head>
+	<body>
+		<ul>
+			{nav.map((nav_item) =>
+				<li><a href={nav_item.href}>{nav_item.label}</a></li>
+			)}
+		</ul>
+	</body>
+</html>
