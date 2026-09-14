@@ -10,6 +10,7 @@ const response = await getBlogs({ fields: ["id", "title"] });
 	<title>Blog KUMIKO</title>
 </head>
 <body>
+	<p>変更したよ</p>
 	<ul>
 		{response.contents.map((content =>
 			<li><a href={content.id}>{content.title}</a></li>
