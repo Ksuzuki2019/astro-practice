@@ -1,17 +1,11 @@
 ---
-import '../css/style.scss';
+import Layout from "../layouts/Layout.astro";
 import { getBlogs } from '../library/microcms';
 const response = await getBlogs({ fields: ["id", "title"] });
 ---
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Blog KUMIKO</title>
-</head>
-<body>
-	<p>変更したよ。</p>
+
+<Layout title="トップページ">
+    <p>変更したよ。</p>
 	<ul>
 		{response.contents.map((content =>
 			<li><a href={content.id}>{content.title}</a></li>
@@ -20,5 +14,4 @@ const response = await getBlogs({ fields: ["id", "title"] });
 	<div class="box">
 		<p>テスト</p>
 	</div>
-</body>
-</html>
+</Layout>
